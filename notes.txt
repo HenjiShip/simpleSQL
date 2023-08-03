@@ -1,0 +1,2 @@
+had to open services in search bar
+had to start mysql80 service to use the mysql command line
