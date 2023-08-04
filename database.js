@@ -12,24 +12,37 @@ const pool = mysql
   })
   .promise();
 
-const getNotes = async () => {
+export const getNotes = async () => {
   const [rows] = await pool.query("SELECT * FROM notes");
   return rows;
 };
 
-const getNote = async (id) => {
-  const [row] = await pool.query(
-    `
+export const getNote = async (id) => {
+  const query = `
     SELECT *
     FROM notes
     WHERE id = ?
-    `,
-    [id]
-  );
+    `;
+  const [row] = await pool.query(query, [id]);
   return row;
 };
 
-const notes = await getNotes();
+export const createNote = async (title, content) => {
+  const query = `
+    INSERT INTO notes (title, contents)
+    VALUES (?, ?)
+  `;
+  const result = await pool.query(query, [title, content]);
+  const id = result[0].insertId;
+  return getNote(id);
+};
+// parameters in pool.query must be in the same order as INSERT INTO
 
-const note = await getNote(1);
-console.log(note);
+// const notes = await getNotes();
+// console.log(notes);
+
+// const note = await getNote(1);
+// console.log(note);
+
+// const createdNoteId = await createNote("test", "test");
+// console.log(createdNoteId);

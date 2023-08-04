@@ -1,2 +1,8 @@
 had to open services in search bar
 had to start mysql80 service to use the mysql command line
+
+if there is nothing to compare between main and master because entirely different commit histories then this will work: 
+git checkout master   
+git branch main master -f    
+git checkout main  
+git push origin main -f 
