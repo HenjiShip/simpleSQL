@@ -6,3 +6,8 @@ git checkout master
 git branch main master -f    
 git checkout main  
 git push origin main -f 
+
+npm init -y to create a package.json and set type to module to use imports instead of commonJS
+
+npm i -D nodemon to install nodemon so application refreshes with every change 
+set dev scripts to "npx nodemon [insert js file here]"
